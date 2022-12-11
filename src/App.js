@@ -1,15 +1,24 @@
 import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-import { useState } from 'react ';
+// import { Component } from 'react';
 
 function App() {
-  // const { reverse } = this.state;
+  // const { reverse } = this.state; <=========> this.state é usado apenas em componente de classe!
   const [reverse, setReverse] = useState(false);
+  const [counter, setCounter] = useState(0);
   const reverseClass = reverse ? 'reverse' : '';
 
   const handleClick = () => {
-    // this.setState({ reverse: !reverse });
+    // const { reverse } = this.state; <=========> dentro da função do estado eu não preciso chamar novamente o estado!
+    //por que ela ja está na linha 8 e eu tenho acesso a ela!
+    // this.setState({ reverse: !reverse, }); <====> em componentes de função que a gente utiliza hooks eu não posso posso
+    // utilizar o THIS, neste caso eu pego o setReverse da linha 8
     setReverse(!reverse);
+  };
+
+  const handleIncrement = () => {
+    setCounter(counter + 1);
   };
 
   return (
@@ -17,9 +26,18 @@ function App() {
       <header className="App-header">
         <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
 
-        <button type="button" onClick={handleClick}>
-          Reverse {reverseClass}
-        </button>
+        <h1>Contador: {counter} </h1>
+        <p>
+          <button type="button" onClick={handleClick}>
+            Reverse {reverseClass}
+          </button>
+        </p>
+
+        <p>
+          <button type="button" onClick={handleIncrement}>
+            Incremet {counter}
+          </button>
+        </p>
       </header>
     </div>
   );
@@ -30,22 +48,21 @@ function App() {
 //     reverse: false,
 //   };
 
-//   handleClick = () => {
-//     const { reverse } = this.state;
-//     this.setState({ reverse: !reverse });
-//   };
+// handleClick = () => {
+//   const { reverse } = this.state;
+//   this.setState({ reverse: !reverse });
+// };
 
 //   render() {
+//     const { reverse } = this.state;
+//     const reverseClass = reverse ? 'reverse' : '';
 
 //     return (
 //       <div className="App">
 //         <header className="App-header">
 //           <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
 
-//           <button
-//             type="button"
-//             onClick={() => this.setState({ reverse: !reverse })}
-//           >
+//           <button type="button" onClick={this.handleClick}>
 //             Reverse {reverseClass}
 //           </button>
 //         </header>
