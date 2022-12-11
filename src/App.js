@@ -35,7 +35,7 @@ function App() {
 
         <p>
           <button type="button" onClick={handleIncrement}>
-            Incremet {counter}
+            Increment {counter}
           </button>
         </p>
       </header>
